@@ -11,7 +11,9 @@ the configuration files found in the repository.
 See the [repo2docker documentation](http://repo2docker.readthedocs.io)
 for more information on using repo2docker.
 
-For support questions please search or post to https://discourse.jupyter.org/c/binder.
+**This is a slightly customized version for use in the DARPA LwLL program**
+
+For support questions please search or post to https://gitlab.lollllz.com/dmc/repo2docker/-/issues
 
 See the [contributing guide](CONTRIBUTING.md) for information on contributing to
 repo2docker.
@@ -41,7 +43,7 @@ pip install jupyter-repo2docker
 To install from source:
 
 ```bash
-git clone https://github.com/jupyter/repo2docker.git
+git clone https://gitlab.lollllz.com/dmc/repo2docker.git
 cd repo2docker
 pip install -e .
 ```
