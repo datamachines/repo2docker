@@ -368,6 +368,17 @@ class Repo2Docker(Application):
         config=True,
     )
 
+    image_labels = Dict(
+        {},
+        help="""
+        Additional metadata to be added to the built image.
+
+        Use a key-value pair, with the key being the metadata label &
+        value being the metadata value
+        """,
+        config=True,
+    )
+
     def fetch(self, url, ref, checkout_path):
         """Fetch the contents of `url` and place it in `checkout_path`.
 
@@ -686,6 +697,10 @@ class Repo2Docker(Application):
 
                 picked_buildpack.appendix = self.appendix
                 # Add metadata labels
+
+                for k, v in self.image_labels.items():
+                    picked_buildpack.labels[k] = v
+
                 picked_buildpack.labels["repo2docker.version"] = self.version
                 repo_label = "local" if os.path.isdir(self.repo) else self.repo
                 picked_buildpack.labels["repo2docker.repo"] = repo_label
