@@ -216,6 +216,14 @@ def get_argparser():
         "--cache-from", action="append", default=[], help=Repo2Docker.cache_from.help
     )
 
+    argparser.add_argument(
+        "--label",
+        "-l",
+        dest="image_labels",
+        action="append",
+        help="Metadata to be added to the Docker image in form key:val",
+        default=[],
+    )
     return argparser
 
 
@@ -362,6 +370,10 @@ def make_r2d(argv=None):
     if args.target_repo_dir:
         r2d.target_repo_dir = args.target_repo_dir
 
+    for metadata in args.image_labels:
+        k, v = metadata.split("=", 1)
+        r2d.image_labels[k] = v
+        print(f"Metadata label: {k}, {v}")
     return r2d
 
 
